@@ -7,7 +7,7 @@ const Navbar = () => {
         <li><a>Pages to Read</a></li>
     </>
     return (
-        <nav className='bg-base-100 shadow-sm'>
+        <nav className='bg-base-100'>
             <div className="navbar container mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -20,7 +20,7 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl font-bold">Books Vibe</a>
+                    <a className="btn btn-ghost text-3xl font-bold">Books Vibe</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 text-lg">
@@ -28,8 +28,8 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end gap-3">
-                    <a className="btn bg-[#23BE0A] text-white">Sign In</a>
-                    <a className="btn bg-[#59C6D2] text-white">Sign Up</a>
+                    <a className="btn bg-[#23BE0A] text-white text-lg py-6 px-6">Sign In</a>
+                    <a className="btn bg-[#59C6D2] text-white text-lg py-6 px-6">Sign Up</a>
                 </div>
             </div>
         </nav >
