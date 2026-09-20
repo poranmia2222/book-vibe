@@ -2,7 +2,8 @@ import React from 'react';
 
 const Navbar = () => {
     const links = <>
-        <li><a href="">Home</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/books">Books</a></li>
         <li><a>Listed Books</a></li>
         <li><a>Pages to Read</a></li>
     </>

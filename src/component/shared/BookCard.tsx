@@ -1,62 +1,111 @@
+
+'use client';
+
 import { BookType } from '@/types/books.type';
 import Image from 'next/image';
-import React from 'react';
+import Link from 'next/link';
+import { useState } from 'react';
 
 interface BookTypeProps {
-    book: BookType
+  book: BookType;
 }
 
 const BookCard = ({ book }: BookTypeProps) => {
-    return (
-        <div className="border border-[#13131320] p-4 rounded-3xl hover:shadow-lg transition-shadow duration-300">
-            {/* Book Image */}
-            <div className="bg-[#F3F3F3] rounded-2xl flex justify-center items-center p-8 h-64">
-                <Image
-                    className="w-auto h-full object-contain rounded-md"
-                    src={book.image}
-                    width={160}
-                    height={220}
-                    alt={book.bookName}
-                />
-            </div>
+  const [isFavorite, setIsFavorite] = useState(false);
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 my-5">
-                {book.tags.map((tag) => (
-                    <span
-                        key={tag}
-                        className="bg-[#23BE0A10] text-[#23BE0A] px-3 py-1.5 rounded-lg font-semibold text-sm"
-                    >
-                        {tag}
-                    </span>
-                ))}
-            </div>
+  return (
+    <div className="group flex h-full flex-col overflow-hidden rounded-3xl border border-base-300 bg-base-100 p-4 transition-all duration-300 hover:-translate-y-2 hover:border-primary/30 hover:shadow-xl">
 
-            {/* Book Information */}
-            <div>
-                <h2 className="text-2xl font-bold line-clamp-1">
-                    {book.bookName}
-                </h2>
+      {/* Book Cover */}
+      <div className="relative flex h-64 items-center justify-center overflow-hidden rounded-2xl bg-base-200 p-6">
 
-                <p className="text-gray-500 mt-2">
-                    By: {book.publisher}
-                </p>
-            </div>
+        <Image
+          src={book.image}
+          width={180}
+          height={240}
+          alt={book.bookName}
+          className="h-full w-auto rounded-md object-contain shadow-md transition-transform duration-500 group-hover:scale-105"
+        />
 
-            {/* Divider */}
-            <div className="divider divid-dashed"></div>
+        {/* Favorite Button */}
+        <button
+          type="button"
+          onClick={() => setIsFavorite(!isFavorite)}
+          aria-label={
+            isFavorite
+              ? 'Remove from favorites'
+              : 'Add to favorites'
+          }
+          aria-pressed={isFavorite}
+          className="absolute right-3 top-3 flex size-10 items-center justify-center rounded-full bg-base-100/90 text-xl shadow-sm backdrop-blur transition-all hover:scale-110 active:scale-95"
+        >
+          <span className={isFavorite ? 'text-error' : 'text-base-content/60'}>
+            {isFavorite ? '♥' : '♡'}
+          </span>
+        </button>
 
-            {/* Bottom Information */}
-            <div className="flex justify-between items-center font-semibold text-gray-600">
-                <p>{book.category}</p>
-
-                <div className="flex items-center gap-1">
-                    <span>⭐</span>
-                    <span>{book.rating}</span>
-                </div>
-            </div>
+        {/* Rating Badge */}
+        <div className="absolute bottom-3 right-3 flex items-center gap-1 rounded-full bg-base-100/90 px-3 py-1.5 text-sm font-semibold shadow-sm backdrop-blur">
+          <span className="text-amber-500">★</span>
+          <span>{book.rating}</span>
         </div>
-    );
+      </div>
+
+      {/* Tags */}
+      <div className="my-4 flex flex-wrap gap-2">
+        {book.tags.map((tag) => (
+          <span
+            key={tag}
+            className="rounded-full bg-success/10 px-3 py-1 text-xs font-semibold text-success transition-colors hover:bg-success/20"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      {/* Book Information */}
+      <div className="flex-1">
+        <h2
+          title={book.bookName}
+          className="line-clamp-2 text-xl font-bold leading-snug transition-colors group-hover:text-primary"
+        >
+          {book.bookName}
+        </h2>
+
+        <p className="mt-2 text-sm text-base-content/60">
+          Published by{' '}
+          <span className="font-medium text-base-content/80">
+            {book.publisher}
+          </span>
+        </p>
+      </div>
+
+      {/* Divider */}
+      <div className="my-4 border-t border-dashed border-base-300" />
+
+      {/* Category & Rating */}
+      <div className="mb-4 flex items-center justify-between gap-3 text-sm">
+        <span className="rounded-lg bg-base-200 px-3 py-1.5 font-medium text-base-content/70">
+          {book.category}
+        </span>
+
+        <span className="text-base-content/50">
+          Reader rating
+        </span>
+      </div>
+
+      {/* View Details Button */}
+      <Link
+        href={`/books/${book.bookId}`}
+        className="btn btn-primary w-full rounded-xl transition-all duration-300 group-hover:shadow-md"
+      >
+        View Details
+        <span className="transition-transform duration-300 group-hover:translate-x-1">
+          →
+        </span>
+      </Link>
+    </div>
+  );
 };
 
 export default BookCard;
