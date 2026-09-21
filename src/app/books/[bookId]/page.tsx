@@ -1,4 +1,6 @@
 
+import ReadButton from '@/component/BookDetails/ReadButton';
+import WishListButton from '@/component/BookDetails/WishListButton';
 import { BookType } from '@/types/books.type';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -50,7 +52,7 @@ const Page = async ({ params }: IBookDetailsPageProps) => {
       <section className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
 
         {/* Left: Book Cover */}
-        <div className="relative flex min-h-[450px] items-center justify-center overflow-hidden rounded-3xl bg-[#F3F3F3] p-8 sm:p-12 lg:min-h-[650px]">
+        <div className="relative flex min-h-112.5 items-center justify-center overflow-hidden rounded-3xl bg-[#F3F3F3] p-8 sm:p-12 lg:min-h-162.5">
 
           {/* Background Decoration */}
           <div className="absolute -left-20 -top-20 size-64 rounded-full bg-white/70 blur-3xl" />
@@ -65,7 +67,7 @@ const Page = async ({ params }: IBookDetailsPageProps) => {
               width={500}
               height={700}
               priority
-              className="h-auto max-h-[600px] w-auto max-w-full rounded-lg object-contain shadow-[0_25px_50px_-15px_rgba(0,0,0,0.25)] transition-transform duration-500 hover:scale-[1.03]"
+              className="h-auto max-h-150 w-auto max-w-full rounded-lg object-contain shadow-[0_25px_50px_-15px_rgba(0,0,0,0.25)] transition-transform duration-500 hover:scale-[1.03]"
             />
           </div>
 
@@ -198,19 +200,9 @@ const Page = async ({ params }: IBookDetailsPageProps) => {
           {/* Action Buttons */}
           <div className="mt-auto flex flex-wrap gap-3 pt-8">
 
-            <button
-              type="button"
-              className="btn h-12 min-h-12 rounded-xl border border-[#13131330] bg-white px-7 text-base font-semibold text-[#131313] transition-all hover:border-[#23BE0A] hover:bg-[#23BE0A]/5"
-            >
-              Read
-            </button>
+            <ReadButton book={book}></ReadButton>
 
-            <button
-              type="button"
-              className="btn h-12 min-h-12 rounded-xl border-0 bg-[#23BE0A] px-7 text-base font-semibold text-white shadow-sm transition-all hover:bg-[#1da509] hover:shadow-md"
-            >
-              ♡ Wishlist
-            </button>
+            <WishListButton book={book}></WishListButton>
 
           </div>
 

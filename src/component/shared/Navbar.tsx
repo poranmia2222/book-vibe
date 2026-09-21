@@ -1,11 +1,12 @@
+import Link from 'next/link';
 import React from 'react';
 
 const Navbar = () => {
     const links = <>
-        <li><a href="/">Home</a></li>
-        <li><a href="/books">Books</a></li>
-        <li><a>Listed Books</a></li>
-        <li><a>Pages to Read</a></li>
+        <li><Link href="/">Home</Link></li>
+        <li><Link href="/books">Books</Link></li>
+        <li><Link href='/listed-books'>Listed Books</Link></li>
+        <li><Link href='/'>Pages to Read</Link></li>
     </>
     return (
         <nav className='bg-base-100'>
