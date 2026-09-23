@@ -6,7 +6,7 @@ const Navbar = () => {
         <li><Link href="/">Home</Link></li>
         <li><Link href="/books">Books</Link></li>
         <li><Link href='/listed-books'>Listed Books</Link></li>
-        <li><Link href='/'>Pages to Read</Link></li>
+        <li><Link href='/pages-to-read'>Pages to Read</Link></li>
     </>
     return (
         <nav className='bg-base-100'>
